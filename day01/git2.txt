@@ -1,0 +1,12 @@
+1.本地有仓库，远程没有仓库
+    - 创建一个远程的仓库
+    - 获取远程仓库的地址（https和ssh）
+    - git remote add origin git@XXXXXXXSsH
+    - git push -u origin master
+    - git push origin --all 一次性推送所有分支
+ 
+
+2.远程有仓库，本地没有仓库
+    - 在本地直接 git clone git@XXXXXXXSsH
+    - git fetch origin dev:dev :去远程拿取其他的分支
+    - git pull origin master 拉取某个分支的内容（如果在直接拉取另一个分支，则拉取分支后并合并到了当前的分支）
