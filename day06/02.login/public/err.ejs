@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #warp{
+            width: 1200px;
+            margin: 0 auto;
+        }
+        .err {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="warp">
+        <img src="/static/err.jpg" style="width: 200px;height:100px;" alt="">
+        <h1>
+            <span class="err"><%- errData%></span>
+            <br>
+            请按照以下连接返回到需要的页面
+        </h1>
+        <div>
+            <a href="index.html">返回主页面</a>
+            <a href="login.html">返回登录页面</a>
+            <a href="register.html">返回注册页面</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

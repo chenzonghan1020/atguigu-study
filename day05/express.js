@@ -6,9 +6,7 @@ const app = express();
 
 const fs = require("fs");
 const path = require("path");
-const {
-    resourceLimits
-} = require("worker_threads");
+
 
 // 书写接口
 app.get("/", (req,res) => {
@@ -16,7 +14,7 @@ app.get("/", (req,res) => {
     // 当前文件所在的位置
     const filePath = path.resolve(__dirname, "index.html");
 
-    resourceLimits.sendFile(filePath);
+    res.sendFile(filePath);
 
 })
 
