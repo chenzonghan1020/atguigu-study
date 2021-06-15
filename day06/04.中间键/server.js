@@ -140,7 +140,7 @@ app.get("/static/:src", (req, res) => {
 })
 
 // 监听端口号和服务器状态
-let port = "3002";
+let port = "3003";
 app.listen(port, (err) => {
     if (err) {
         console.log(err);

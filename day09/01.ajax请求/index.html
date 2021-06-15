@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+
+<body>
+    <button id="btn">提交</button>
+    <script>
+        $("#btn").click(function () {
+            /* $.ajax({
+                method: "get", //请求方式
+                url: "/login", //请求地址
+                cache: false, //是否缓存
+                // 设置请求数据
+                data: {
+                    user: "123",
+                    pass: "123"
+                },
+                dataType:"json",
+                headers:{
+                    //设置请求头
+                    "Cache-Contorl":"max-age=0"
+                },
+                success(data){
+                    console.log(data);
+                }
+            }) */
+
+            $.get('/login',{
+                user:"laowang",
+                pass:"123"
+            },data=>{
+                console.log(data);
+            })
+
+            /* $.post('/login',{
+                user:"laowang",
+                pass:"123"
+            },data=>{
+                console.log(data);
+            }) */
+
+            /* // jQuery三级封装
+            $.getJSON("/login",{
+                user:"laowang",
+                pass:"123"
+            },data=>{
+                console.log(data);
+            }) */
+        })
+    </script>
+</body>
+
+</html>

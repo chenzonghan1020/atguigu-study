@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="#" id="form">
+        <label>
+            user: <input type="text" name="user" id="user">
+        </label>
+        <label>
+            pass: <input type="password" name="pass" id="pass">
+        </label>
+        <button id="btn">提交</button>
+    </form>
+    
+    <script>
+        const btn = document.getElementById("btn");
+        const form = document.getElementById("form");
+        const user = document.getElementById("user");
+        const pass = document.getElementById("pass");
+
+        form.onsubmit = function (e) {
+            // 获取一个ajax请求对象
+            const xhr = new XMLHttpRequest();
+            // 设置请求信息
+            xhr.open("get", `/login?user=${user.value}&pass=${pass.value}`, true);
+            // 请求
+            xhr.send();
+            // 通过onreadystatechange事件来判断是否请求成功
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // 通过responseText和responseXML来接收返回的数据
+                    console.log(JSON.parse(xhr.responseText));
+                }
+
+            }
+            // 阻止默认事件
+            return false;
+        }
+    </script>
+</body>
+
+</html>

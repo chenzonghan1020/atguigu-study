@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="#" id="form">
+        user: <input type="text" name="username" id="user">
+        <br>
+        password: <input type="password" name="password" id="password">
+        <br>
+        <button id="btn">请求</button>
+    </form>
+    <script>
+        const form = document.getElementById("form");
+        const user = document.getElementById("user");
+        const password = document.getElementById("password");
+        const btn = document.getElementById("btn");
+
+        form.onsubmit = function (e) {
+            // 实例化XMLHttpRequest对象，得到一个ajax请求对象
+            const xhr = new XMLHttpRequest();
+            // 2.打开链接open方法（参数：参数1 请求方法 ，参数2 请求地址， 参数三 请求是否异步 ）
+            // xhr.open("get", "/login", true);
+            // 加上一个时间戳每次请都不一样就可以不读取缓存
+            xhr.open("get", `/login?user=${user.value}&pass=${password.value}&t=${Date.now()}`, true);
+            // 3.发送请求 send()方法
+            xhr.send();
+            // 4.xhr有一个onreadystatechange事件可以接受请求过程中readystate码的改变
+            xhr.onreadystatechange = function () {
+                // 当readyState变成4，并且响应状态码变成200的时候代表请求成功
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                //    有两个属性接收到响应
+                // xhr.responseText:接收到的是文本 字符串 json 
+                // xhr.responseXML的数据
+                    console.log(JSON.parse(xhr.responseText));
+                }
+            }
+            // 阻止默认事件
+            // 为什么要阻止事件发生 因为form表单提交会自动刷新
+            return false;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="#" id="form">
+        user: <input type="text" name="user" id="name">
+        <br>
+        pass: <input type="text" name="pass" id="pass">
+        <br>
+        <button id="btn">提交</button>
+    </form>
+    <script>
+        const oform = document.getElementById("form");
+        oform.onsubmit = function (e) {
+            // 1.需要一个Ajax请求对象，通过XMLHttpRequest来获得
+            const xhr = new XMLHttpRequest();
+            // 通过链接open方法来告诉请求的方式 地址 以及是否异步请求
+            xhr.open("get", "/login", true);
+            // 通过send方法来发送请求
+            xhr.send();
+            // xhr有一个onreadystatechange事件可以接受请求过程中readystate码的改变
+            xhr.onreadystatechange = function () {
+                // 只要readystate等于4和status等于200的时候请求才完成
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    /* 
+                    有两个属性可以接收到响应
+                    xhr.responseText 接收文本数据 字符串 和 JSON
+                    xhr.responseXML 的数据
+
+                    */
+                    console.log(JSON.parse(xhr.responseText));
+                }
+                
+            }
+            return false;
+        }
+    </script>
+</body>
+
+</html>

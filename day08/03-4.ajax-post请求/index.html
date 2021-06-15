@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="#" id="form">
+        user: <input type="text" name="user" id="user">
+        <br>
+        pass: <input type="password" name="pass" id="pass">
+        <br>
+        <button id="btn">提交</button>
+    </form>
+    <script>
+        const form = document.getElementById("form");
+        const user = document.getElementById("user");
+        const pass = document.getElementById("pass");
+        const btn = document.getElementById("btn");
+
+        form.onsubmit = function (e) {
+            //    需要一个Ajax请求对象
+            const xhr = new XMLHttpRequest();
+            // 使用open方法链接
+            xhr.open("post", "/login", true);
+            // 设置响应头
+            xhr.setRequestHeader("Content-Type", "appliction/x-www-form-urlencoded;charset=utf-8");
+            // 响应方式
+            xhr.send(`user=${user.value}&pass=${pass.value}`);
+            xhr.onreadystatechange = function () {
+                if (xhr.readystate === 4 && xhr.status === 200) {
+                    // responseText可以接收文本数据 字符串 和 json数据
+                    console.log(JSON.parse(xhr.responseText));
+                }
+            }
+
+            return false;
+        }
+    </script>
+    <script>
+        const form = document.getElementById("form");
+        const user = document.getElementById("user");
+        const pass = document.getElementById("pass");
+        form.onsubmit = function (e) {
+            // 需要一个Ajax对象来请求
+            const xhr = new XMLHttpRequest();
+            // 通过open方法来链接
+            xhr.open("post", "/login", true);
+            // post请求需要设置请求头
+            xhr.setRequestHeader("Content-Type", "appliction/x-www-form-urlencoded;charset=utf-8")
+            // 设置响应
+            xhr.send(`user=${user.value}&pass=${pass.value}`);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 2 && xhr.status === 200) {
+                    console.log(JSON.parse(xhr.responseText));
+                }
+            }
+            return false;
+        }
+    </script>
+</body>
+
+</html>
