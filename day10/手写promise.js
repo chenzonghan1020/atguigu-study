@@ -8,7 +8,7 @@ function myPromise(exector) {
         _this.status = "resolved";
         _this.value = value;
         setTimeout(() => {
-            _this.callback.onResolved(value);
+           _this.callback.onResolved && _this.callback.onResolved(value);
         });
     }
 
@@ -16,7 +16,7 @@ function myPromise(exector) {
         _this.status = "rejected";
         _this.value = reason;
         setTimeout(() => {
-            _this.callback.onRejected(reason);
+           _this.callback.onRejected && _this.callback.onRejected(reason);
         });
     }
     exector(resolve, reject);
