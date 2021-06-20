@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+</head>
+<body>
+    <button id="btn1">查询</button>
+    <button id="btn2">新增</button>
+    <button id="btn3">修改</button>
+    <button id="btn4">删除</button>
+    <script>
+        const btn1 = document.getElementById("btn1");
+        const btn2 = document.getElementById("btn2");
+        const btn3 = document.getElementById("btn3");
+        const btn4 = document.getElementById("btn4");
+
+        // 查
+        btn1.onclick = function(){
+            axios.get('http://localhost:3000/person?sex=nan&age=24')
+            .then((data)=>{
+                console.log(data);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+        }
+        // 增
+        btn2.onclick = function(){
+            axios.post("http://localhost:3000/person",{
+                "name":"wuyiweng",
+                "age":24,
+                "sex":"nan"
+            })
+            .then((data)=>{
+                console.log(data);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+        }
+        // 改
+        btn3.onclick = function(){
+            axios.put("http://localhost:3000/person/13",{
+                "name":"wangeergou",
+                "age":18,
+                "sex":"nv"
+            })
+            .then((data)=>{
+                console.log(data);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+        }
+        // 删
+        btn4.onclick = function(){
+            axios.delete("http://localhost:3000/person/21")
+            .then((data)=>{
+                console.log(data);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+        }
+    </script>
+</body>
+</html>
